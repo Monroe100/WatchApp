@@ -22,6 +22,7 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^watch/',include('watch.urls')),
     url(r'^logout/$', views.logout, {"next_page": '/'}),
+    url(r'^tinymce/', include('tinymce.urls')),
 
 ]
 if settings.DEBUG:
