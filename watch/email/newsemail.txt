@@ -1,0 +1,3 @@
+Hello {{name}}
+
+Welcome to the Neighbour Hood Watch App, Your platform for communication
