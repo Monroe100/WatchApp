@@ -69,5 +69,5 @@ class Post(models.Model):
     post_caption = models.TextField()
     neighbourhood = models.ForeignKey('Neighbourhood')
     date =models.CharField(max_length= 30)
-    business = models.ForeignKey('Business')
+    # business = models.ForeignKey('Business')
     user = models.ForeignKey(User, on_delete=models.CASCADE)
