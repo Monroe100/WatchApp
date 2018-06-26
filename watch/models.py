@@ -44,3 +44,19 @@ class Profile(models.Model):
     location = models.CharField(max_length= 30)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
 
+    def __str__(self):
+        return self.profile_name
+
+    def create_Profile(self):
+        '''Method to create a profile'''
+        self.create()
+
+    def delete_profile(self):
+        '''Method to delete a profile'''
+        self.delete()
+
+    @classmethod
+    def get_profile(cls):
+       
+        Profiles = cls.objects.all()
+        return Profiles
