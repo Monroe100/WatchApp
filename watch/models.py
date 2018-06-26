@@ -60,3 +60,14 @@ class Profile(models.Model):
        
         Profiles = cls.objects.all()
         return Profiles
+
+
+class Post(models.Model):
+    name = models.CharField(max_length =30)
+    post = models.ImageField(upload_to= 'posts/')
+    profile = models.ForeignKey('Profile')
+    post_caption = models.TextField()
+    neighbourhood = models.ForeignKey('Neighbourhood')
+    date =models.CharField(max_length= 30)
+    business = models.ForeignKey('Business')
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
