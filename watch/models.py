@@ -31,3 +31,16 @@ class Neighbourhood(models.Model):
         Neighbourhoods = cls.objects.all()
         return Neighbourhoods
 
+
+
+
+
+class Profile(models.Model):
+    name = models.CharField(max_length =20)
+    neighbourhood = models.ForeignKey('Neighbourhood')
+    email = models.CharField(max_length = 30)
+    profile_pic = models.ImageField(upload_to='occupants/')
+    occupant_id = models.IntegerField(unique = True)
+    location = models.CharField(max_length= 30)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+
