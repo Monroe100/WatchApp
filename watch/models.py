@@ -7,7 +7,8 @@ class Neighbourhood(models.Model):
     neighbourhood_name = models.CharField(max_length =30)
     neighbourhood_location = models.CharField(max_length = 30)
     occupants_count = models.IntegerField()
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(U
+ser, on_delete=models.CASCADE)
 
 
     def __str__(self):
@@ -71,3 +72,34 @@ class Post(models.Model):
     date =models.CharField(max_length= 30)
     # business = models.ForeignKey('Business')
     user = models.ForeignKey(User, on_delete=models.CASCADE)
+    def __str__(self):
+        return self.name
+        
+    @classmethod
+    def get_posts(cls):
+        '''
+        Method that gets all image posts from the database
+        Returns:
+            get_posts : list of image post objects from the database
+        ''' 
+        images = Post.objects.all ()
+        return images
+
+    @classmethod
+    def get_post_by_id(cls, id):
+        '''
+        Method that loopps through the class and pick an anticipated id
+        Returns:
+            selected_post : desired post
+        '''
+        selected_post = Post.objects.filter_by(id=id)
+        return selected_post
+
+    @classmethod
+    def get_post_by_neighbourhood_id(cls, neighbourhood_id):
+        images = Post.objects.filter(id = neighbourhood_id).all()
+        return images
+
+    
+
+
