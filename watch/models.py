@@ -7,8 +7,7 @@ class Neighbourhood(models.Model):
     neighbourhood_name = models.CharField(max_length =30)
     neighbourhood_location = models.CharField(max_length = 30)
     occupants_count = models.IntegerField()
-    user = models.ForeignKey(U
-ser, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
 
 
     def __str__(self):
@@ -103,3 +102,37 @@ class Post(models.Model):
     
 
 
+class Business(models.Model):
+    name = models.CharField(max_length =20)
+    b_email = models.CharField(max_length= 40)
+    neighbourhood = models.ForeignKey('Neighbourhood')
+    profile = models.ForeignKey('Profile')
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    image = models.ImageField(upload_to= 'businesss/')
+
+
+    def __str__(self):
+        return self.name
+
+    def create_business(self):
+        '''Method to create a business'''
+        self.create()
+
+    def delete_business(self):
+        '''Method to delete a certain business'''
+        self.delete()
+
+    @classmethod
+    def get_businesses(cls):
+        '''
+        Method that gets all image posts from the database
+        Returns:
+            get_posts : list of image post objects from the database
+        ''' 
+        businesses = Business.objects.all ()
+        return businesses
+
+    @classmethod
+    def search_by_neighbourhood(cls,search_term):
+        businesses = cls.objects.filter(neighbourhood__neighbourhood_name__icontains=search_term)
+        return businesses
